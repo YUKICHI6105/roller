@@ -19,11 +19,11 @@ class RollerNode : public rclcpp::Node
     RollerNode() : Node("roller_node")
     {
       sub_ = this->create_subscription<sensor_msgs::msg::Joy>("joy", 10, std::bind(&RollerNode::joy_callback, this, std::placeholders::_1));
-      frame_pub_ = this->create_publisher<robomas_plugins::msg::RobomasFrame>("robomas_frame", 10);
-      target_pub1_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target1", 10);
-      target_pub2_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2", 10);
-      target_pub3_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target3", 10);
-      target_pub4_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target4", 10);
+      frame_pub_ = this->create_publisher<robomas_plugins::msg::RobomasFrame>("robomas_frame2", 10);
+      target_pub1_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_1", 10);
+      target_pub2_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_2", 10);
+      target_pub3_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_3", 10);
+      target_pub4_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_4", 10);
     }
 };
 
