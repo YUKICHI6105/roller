@@ -12,14 +12,14 @@ namespace robomas
         return target;
     }
 
-    static std::unique_ptr<robomas_plugins::msg::RobomasFrame> get_roller_frame(const uint16_t id) 
+    static std::unique_ptr<robomas_plugins::msg::RobomasFrame> get_roller_frame(const uint16_t id,const uint8_t mode) 
     {
         auto frame = std::make_unique<robomas_plugins::msg::RobomasFrame>();
-        frame->mode = 1;
+        frame->mode = mode;
         frame->motor = id;
         frame->c620 = 0;
         frame->temp = 50;
-        frame->velkp = 0.25;
+        frame->velkp = 0.15;
         frame->velki = 9;
         return frame;
     }

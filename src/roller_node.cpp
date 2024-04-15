@@ -20,37 +20,43 @@ class RollerNode : public rclcpp::Node
     {
       sub_ = this->create_subscription<sensor_msgs::msg::Joy>("joy", 10, std::bind(&RollerNode::joy_callback, this, std::placeholders::_1));
       frame_pub_ = this->create_publisher<robomas_plugins::msg::RobomasFrame>("robomas_frame2", 10);
-      target_pub1_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_1", 10);
-      target_pub2_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_2", 10);
-      target_pub3_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_3", 10);
-      target_pub4_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_4", 10);
+      target_pub1_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_0", 10);
+      target_pub2_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_1", 10);
+      target_pub3_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_2", 10);
+      target_pub4_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target2_3", 10);
     }
 };
 
 void RollerNode::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg){
   if(msg->buttons[1] == 1){
-    target_pub1_->publish(robomas::get_target(-1885));
-    target_pub2_->publish(robomas::get_target(-1885));
-    target_pub3_->publish(robomas::get_target(-1885));
-    target_pub4_->publish(robomas::get_target(-1885));
+    target_pub1_->publish(robomas::get_target(-900));
+    target_pub2_->publish(robomas::get_target(-900));
+    target_pub3_->publish(robomas::get_target(-900));
+    target_pub4_->publish(robomas::get_target(-900));
   }
-  if(msg->buttons[0] == 1){
-    target_pub1_->publish(robomas::get_target(1885));
-    target_pub2_->publish(robomas::get_target(1885));
-    target_pub3_->publish(robomas::get_target(1885));
-    target_pub4_->publish(robomas::get_target(1885));
+  else if(msg->buttons[0] == 1){
+    target_pub1_->publish(robomas::get_target(900));
+    target_pub2_->publish(robomas::get_target(900));
+    target_pub3_->publish(robomas::get_target(900));
+    target_pub4_->publish(robomas::get_target(900));
   }
-  if(msg->buttons[2] == 1){
+  else{
     target_pub1_->publish(robomas::get_target(0));
     target_pub2_->publish(robomas::get_target(0));
     target_pub3_->publish(robomas::get_target(0));
     target_pub4_->publish(robomas::get_target(0));
   }
+  if(msg->buttons[7] == 1){
+    frame_pub_->publish(robomas::get_roller_frame(0,1));
+    frame_pub_->publish(robomas::get_roller_frame(1,1));
+    frame_pub_->publish(robomas::get_roller_frame(2,1));
+    frame_pub_->publish(robomas::get_roller_frame(3,1));
+  }
   if(msg->buttons[6] == 1){
-    frame_pub_->publish(robomas::get_roller_frame(0));
-    frame_pub_->publish(robomas::get_roller_frame(1));
-    frame_pub_->publish(robomas::get_roller_frame(2));
-    frame_pub_->publish(robomas::get_roller_frame(3));
+    frame_pub_->publish(robomas::get_roller_frame(0,0));
+    frame_pub_->publish(robomas::get_roller_frame(1,0));
+    frame_pub_->publish(robomas::get_roller_frame(2,0));
+    frame_pub_->publish(robomas::get_roller_frame(3,0));
   }
 }
 
