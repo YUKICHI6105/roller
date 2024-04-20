@@ -28,13 +28,13 @@ class RollerNode : public rclcpp::Node
 };
 
 void RollerNode::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg){
-  if(msg->buttons[1] == 1){
-    target_pub1_->publish(robomas::get_target(-900));
-    target_pub2_->publish(robomas::get_target(-900));
-    target_pub3_->publish(robomas::get_target(-900));
-    target_pub4_->publish(robomas::get_target(-900));
-  }
-  else if(msg->buttons[0] == 1){
+  // if(msg->buttons[1] == 1){
+  //   target_pub1_->publish(robomas::get_target(-900));
+  //   target_pub2_->publish(robomas::get_target(-900));
+  //   target_pub3_->publish(robomas::get_target(-900));
+  //   target_pub4_->publish(robomas::get_target(-900));
+  // }
+  if(msg->buttons[0] == 1){
     target_pub1_->publish(robomas::get_target(900));
     target_pub2_->publish(robomas::get_target(900));
     target_pub3_->publish(robomas::get_target(900));
